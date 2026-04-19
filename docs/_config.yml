@@ -1,0 +1,60 @@
+# Site Configuration
+title: Spark Code Practice
+description: Hands-on educational labs for learning Apache Spark
+baseurl: ""
+url: "https://nellaivijay.github.io/spark-code-practice"
+
+# Build settings
+markdown: kramdown
+theme: minima
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .gitignore
+  - .env.example
+  - docker-compose.yaml
+  - scripts/
+  - labs/
+  - notebooks/
+  - solutions/
+  - data/
+  - config/
+  - k8s/
+  - .github/
+
+# Navigation
+header_pages:
+  - installation.md
+  - quickstart.md
+  - labs.md
+
+# SEO
+twitter:
+  username: nellaivijay
+  card: summary
+
+social:
+  name: Spark Code Practice
+  links:
+    - https://github.com/nellaivijay/spark-code-practice
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"

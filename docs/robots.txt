@@ -1,0 +1,6 @@
+# robots.txt for Spark Code Practice
+
+User-agent: *
+Allow: /
+
+Sitemap: https://nellaivijay.github.io/spark-code-practice/sitemap.xml

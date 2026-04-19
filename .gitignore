@@ -74,8 +74,8 @@ env/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
 .ipynb_checkpoints/
+!notebooks/*.ipynb
 
 # Spark specific
 spark-warehouse/
@@ -90,6 +90,7 @@ derby.log
 *.tsv
 *.txt
 *.data
+!docs/robots.txt
 
 # Data files (keep structure, ignore large data)
 data/*.csv
