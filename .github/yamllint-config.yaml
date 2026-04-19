@@ -1,0 +1,28 @@
+extends: default
+
+rules:
+  line-length:
+    max: 120
+    level: warning
+
+  document-start:
+    present: false
+
+  indentation:
+    spaces: 2
+    indent-sequences: true
+
+  comments:
+    min-spaces-from-content: 1
+
+  comments-indentation: {}
+
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
+
+ignore: |
+  node_modules/
+  .git/
+  .github/
+  dist/
+  build/
