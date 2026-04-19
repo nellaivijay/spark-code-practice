@@ -1,0 +1,181 @@
+# Compiled class files
+*.class
+*.log
+
+# Scala specific
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+target/
+project/
+project/target/
+.bsp/
+.metals/
+.bloop/
+metals.sbt
+
+# IDE specific
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.pydevproject
+.python-version
+*.venv
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+.ipynb_checkpoints/
+
+# Spark specific
+spark-warehouse/
+metastore_db/
+derby.log
+*.parquet
+*.orc
+*.avro
+*.delta
+*.json
+*.csv
+*.tsv
+*.txt
+*.data
+
+# Data files (keep structure, ignore large data)
+data/*.csv
+data/*.json
+data/*.parquet
+data/*.orc
+data/*.avro
+!data/.gitkeep
+!data/README.md
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+out/
+
+# SBT
+.sbtserver
+.cache/
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+.mvn/
+
+# Kubernetes
+*.kubeconfig
+kubeconfig
+
+# Secrets
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+secrets/
+*.secret
+*.password
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives
+*.tar
+*.tgz
+*.gz
+*.zip
+*.rar
+*.7z
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Dependency directories
+node_modules/
+
+# Package Manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
