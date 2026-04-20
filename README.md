@@ -1,3 +1,28 @@
+# Apache Spark Code Practice
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Apache Spark](https://img.shields.io/badge/Apache%20Spark-3.5%2B-orange)](https://spark.apache.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
+
+## 📖 Table of Contents
+
+- [🎯 Educational Mission](#-educational-mission)
+- [🎓 Why This Repository?](#-why-this-repository)
+- [🎓 Learning Approach](#-learning-approach)
+- [🏗️ Architecture](#-architecture)
+- [🛠️ Core Stack](#️-core-stack)
+- [🎓 Chapter Structure](#-chapter-structure)
+- [🚀 Quick Start](#-quick-start)
+- [📋 Requirements](#-requirements)
+- [🔧 Configuration](#-configuration)
+- [📚 Documentation](#-documentation)
+- [🆘 Vendor Independence](#-vendor-independence)
+- [🤝 Contributing](#-contributing)
+- [👥 Community and Learning](#-community-and-learning)
+- [🔗 Related Practice Repositories](#-related-practice-repositories)
+- [📄 License](#-license)
+
 <!--
 SEO Metadata
 Title: Apache Spark Code Practice - Free Hands-on Labs for Big Data Learning
@@ -5,8 +30,6 @@ Description: Master Apache Spark with free, hands-on labs. Practice Spark SQL, D
 Keywords: apache spark, spark code practice, spark tutorial, big data spark, spark dataframes, spark mllib, spark streaming, pyspark, scala spark
 Author: Spark Code Practice Community
 -->
-
-# Apache Spark Code Practice
 
 ## 🎯 Educational Mission
 

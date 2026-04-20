@@ -133,7 +133,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install nbformat jupyter
+          pip install nbformat jupyter nbqa black ruff
 
       - name: Validate notebooks
         run: |
@@ -144,6 +144,22 @@ jobs:
                 echo "Validated $notebook"
               fi
             done
+          else
+            echo "No notebooks directory found, skipping"
+          fi
+
+      - name: Check notebook formatting with nbQA (black)
+        run: |
+          if [ -d "notebooks" ]; then
+            nbqa black --check notebooks/ || true
+          else
+            echo "No notebooks directory found, skipping"
+          fi
+
+      - name: Check notebook linting with nbQA (ruff)
+        run: |
+          if [ -d "notebooks" ]; then
+            nbqa ruff check notebooks/ || true
           else
             echo "No notebooks directory found, skipping"
           fi
