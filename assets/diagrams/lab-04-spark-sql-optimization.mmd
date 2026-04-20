@@ -1,0 +1,84 @@
+# Lab 4 - Spark SQL & Optimization
+
+```mermaid
+graph TB
+    subgraph "Spark SQL Query Execution"
+        A[SQL Query] --> B[Parser]
+        B --> C[Analyzer]
+        C --> D[Optimizer]
+        D --> E[Catalyst Optimizer]
+        E --> F[Physical Plan]
+        F --> G[Cost Model]
+        G --> H[Execution]
+    end
+    
+    subgraph "Optimization Techniques"
+        I[Predicate Pushdown]
+        J[Column Pruning]
+        K[Constant Folding]
+        L[Join Reordering]
+    end
+    
+    subgraph "Adaptive Query Execution"
+        M[Runtime Statistics]
+        N[Coalesce Partitions]
+        O[Skew Join Optimization]
+        P[Dynamic Partition Pruning]
+    end
+    
+    E --> I
+    E --> J
+    E --> K
+    E --> L
+    
+    H --> M
+    M --> N
+    M --> O
+    M --> P
+    
+    style A fill:#e1f5ff
+    style E fill:#ffe1e1
+    style M fill:#e1ffe1
+```
+
+## Query Execution Flow
+
+### 1. Parsing
+- SQL string parsed to Abstract Syntax Tree (AST)
+- Validation of syntax and table references
+
+### 2. Analysis
+- Resolve table and column references
+- Validate data types
+- Check permissions
+
+### 3. Optimization
+- **Catalyst Optimizer**: Rule-based and cost-based optimization
+- **Predicate Pushdown**: Move filters closer to data source
+- **Column Pruning**: Remove unused columns
+- **Constant Folding**: Evaluate constant expressions
+- **Join Reordering**: Optimize join order
+
+### 4. Physical Planning
+- Convert logical plan to physical plan
+- Choose specific algorithms (e.g., broadcast hash join vs sort merge join)
+
+### 5. Execution
+- Generate RDD operations
+- Execute across cluster
+
+## Adaptive Query Execution (AQE)
+
+### Runtime Optimizations
+- **Coalesce Partitions**: Reduce shuffle partitions
+- **Skew Join Optimization**: Handle data skew
+- **Dynamic Partition Pruning**: Skip unnecessary partitions
+
+## Performance Tips
+
+1. **Use appropriate file formats** (Parquet for columnar, Avro for row-based)
+2. **Partition data** on frequently filtered columns
+3. **Cache frequently used DataFrames**
+4. **Use broadcast joins** for small tables
+5. **Enable AQE** for runtime optimization
+6. **Monitor Spark UI** for performance insights

@@ -1,0 +1,167 @@
+# Lab 7 - Production Deployment
+
+```mermaid
+graph TB
+    subgraph "Development"
+        A[Local Development] --> B[Docker Compose]
+        B --> C[Testing]
+    end
+    
+    subgraph "Deployment"
+        C --> D[Docker]
+        C --> E[Kubernetes]
+        C --> F[Standalone Cluster]
+    end
+    
+    subgraph "Orchestration"
+        D --> G[Airflow]
+        E --> G
+        F --> G
+    end
+    
+    subgraph "Monitoring"
+        G --> H[Spark UI]
+        G --> I[Prometheus/Grafana]
+        G --> J[Logging]
+    end
+    
+    subgraph "CI/CD"
+        K[GitHub Actions] --> L[Docker Build]
+        L --> M[Image Registry]
+        M --> N[Deployment]
+    end
+    
+    N --> D
+    N --> E
+    N --> F
+    
+    style A fill:#e1f5ff
+    style G fill:#ffe1e1
+    style H fill:#e1ffe1
+```
+
+## Deployment Strategies
+
+### 1. Docker Deployment
+- **Containerization**: Package Spark application with dependencies
+- **Docker Compose**: Multi-container local development
+- **Image Registry**: Store and distribute Docker images
+- **Advantages**: Reproducibility, isolation, easy scaling
+
+### 2. Kubernetes Deployment
+- **Pods**: Spark executors as Kubernetes pods
+- **Services**: Service discovery and load balancing
+- **ConfigMaps**: Configuration management
+- **Secrets**: Secure credential management
+- **Advantages**: Scalability, auto-scaling, self-healing
+
+### 3. Standalone Cluster
+- **Master/Worker**: Traditional Spark cluster
+- **Resource Manager**: YARN or Mesos
+- **Advantages**: Simple setup, good for on-premises
+
+## Orchestration
+
+### Airflow
+- **DAGs**: Define workflow dependencies
+- **Operators**: SparkSubmitOperator for Spark jobs
+- **Scheduling**: Cron-based scheduling
+- **Monitoring**: UI for job status
+
+### Other Options
+- **Apache Oozie**: Hadoop workflow scheduler
+- **Apache Livy**: REST API for Spark
+- **Databricks Jobs**: Managed Spark job scheduling
+
+## Monitoring
+
+### Spark UI
+- **Jobs Tab**: Job execution details
+- **Stages Tab**: Stage-level metrics
+- **Storage Tab**: Cached data information
+- **Environment Tab**: Configuration details
+- **Executors Tab**: Resource utilization
+
+### Prometheus + Grafana
+- **Metrics Collection**: Spark metrics exporter
+- **Visualization**: Grafana dashboards
+- **Alerting**: Alert rules for failures
+- **Advantages**: Centralized monitoring, historical data
+
+### Logging
+- **Structured Logging**: JSON format logs
+- **Log Aggregation**: ELK stack (Elasticsearch, Logstash, Kibana)
+- **Log Levels**: DEBUG, INFO, WARN, ERROR
+- **Advantages**: Debugging, audit trails
+
+## CI/CD Pipeline
+
+### GitHub Actions
+```yaml
+name: Build and Deploy
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        run: docker build -t my-spark-app .
+      - name: Push to registry
+        run: docker push my-registry/my-spark-app
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f k8s/
+```
+
+### Pipeline Stages
+1. **Build**: Compile code, run tests
+2. **Package**: Create Docker image
+3. **Push**: Upload to image registry
+4. **Deploy**: Update Kubernetes deployment
+5. **Verify**: Health checks, smoke tests
+
+## Security
+
+### Best Practices
+- **Secrets Management**: Use Kubernetes secrets or vault
+- **Network Policies**: Restrict pod communication
+- **RBAC**: Role-based access control
+- **Image Scanning**: Security vulnerability scanning
+- **Authentication**: LDAP/AD integration
+
+## Performance Tuning
+
+### Cluster Configuration
+- **Executor Memory**: Allocate based on workload
+- **Cores per Executor**: Optimize for parallelism
+- **Dynamic Allocation**: Scale resources based on demand
+- **Memory Fraction**: Balance execution vs storage
+
+### Application Tuning
+- **Serialization**: Use Kryo serializer
+- **Compression**: Enable for shuffle
+- **Speculation**: Enable for stragglers
+- **AQE**: Adaptive query execution
+
+## High Availability
+
+### Master HA
+- **ZooKeeper**: Master coordination
+- **Multiple Masters**: Standby masters
+- **Automatic Recovery**: Failover mechanism
+
+### Data Recovery
+- **Checkpointing**: Periodic state snapshots
+- **Write Ahead Logs**: Recovery for streaming
+- **Replication**: Data redundancy
+
+## Best Practices
+
+1. **Use container orchestration** for production
+2. **Implement monitoring and alerting**
+3. **Automate deployment with CI/CD**
+4. **Secure credentials and configurations**
+5. **Test thoroughly before deployment**
+6. **Plan for high availability**
+7. **Document runbooks and procedures**
+8. **Regular security updates**

@@ -1,0 +1,144 @@
+# Lab 6 - MLlib Machine Learning
+
+```mermaid
+graph TB
+    subgraph "ML Pipeline"
+        A[Raw Data] --> B[Data Preparation]
+        B --> C[Feature Engineering]
+        C --> D[Model Training]
+        D --> E[Model Evaluation]
+        E --> F[Model Deployment]
+    end
+    
+    subgraph "Data Preparation"
+        G[Data Cleaning]
+        H[Handling Missing Values]
+        I[Feature Scaling]
+        J[Data Splitting]
+    end
+    
+    subgraph "Feature Engineering"
+        K[Feature Extraction]
+        L[Feature Selection]
+        M[Dimensionality Reduction]
+    end
+    
+    subgraph "Model Training"
+        N[Classification]
+        O[Regression]
+        P[Clustering]
+        Q[Recommendation]
+    end
+    
+    subgraph "Model Evaluation"
+        R[Metrics]
+        S[Cross Validation]
+        T[Hyperparameter Tuning]
+    end
+    
+    B --> G
+    B --> H
+    B --> I
+    B --> J
+    
+    C --> K
+    C --> L
+    C --> M
+    
+    D --> N
+    D --> O
+    D --> P
+    D --> Q
+    
+    E --> R
+    E --> S
+    E --> T
+    
+    style A fill:#e1f5ff
+    style D fill:#ffe1e1
+    style E fill:#e1ffe1
+```
+
+## ML Pipeline Stages
+
+### 1. Data Preparation
+- **Data Cleaning**: Remove duplicates, handle outliers
+- **Missing Values**: Impute or drop missing data
+- **Feature Scaling**: Standardize or normalize features
+- **Data Splitting**: Train/test/validation splits
+
+### 2. Feature Engineering
+- **Feature Extraction**: Create new features from existing data
+- **Feature Selection**: Choose relevant features
+- **Dimensionality Reduction**: PCA, feature selection
+
+### 3. Model Training
+- **Classification**: Logistic Regression, Decision Trees, Random Forest
+- **Regression**: Linear Regression, Gradient Boosting
+- **Clustering**: K-Means, Gaussian Mixture
+- **Recommendation**: ALS (Alternating Least Squares)
+
+### 4. Model Evaluation
+- **Metrics**: Accuracy, Precision, Recall, F1, ROC-AUC
+- **Cross Validation**: K-fold cross validation
+- **Hyperparameter Tuning**: Grid search, random search
+
+## MLlib Algorithms
+
+### Classification
+- **Logistic Regression**: Binary/multiclass classification
+- **Decision Trees**: Interpretable tree-based models
+- **Random Forest**: Ensemble of decision trees
+- **Gradient Boosting**: Boosted tree algorithms
+- **Naive Bayes**: Probabilistic classifier
+- **Multilayer Perceptron**: Neural network classifier
+
+### Regression
+- **Linear Regression**: Basic regression model
+- **Generalized Linear Regression**: GLM family
+- **Decision Tree Regression**: Tree-based regression
+- **Random Forest Regression**: Ensemble regression
+- **Gradient Boosted Trees**: Boosted regression
+
+### Clustering
+- **K-Means**: Centroid-based clustering
+- **Gaussian Mixture**: Probabilistic clustering
+- **Bisecting K-Means**: Hierarchical clustering
+
+### Recommendation
+- **ALS**: Collaborative filtering
+
+## Pipeline API
+
+### Components
+- **Transformer**: Algorithm that transforms data (e.g., feature scaling)
+- **Estimator**: Algorithm that can be fit on data (e.g., model training)
+- **Pipeline**: Chain of transformers and estimators
+
+### Example
+```python
+from pyspark.ml import Pipeline
+from pyspark.ml.feature import VectorAssembler, StandardScaler
+from pyspark.ml.classification import LogisticRegression
+
+# Define pipeline stages
+assembler = VectorAssembler(inputCols=["features"], outputCol="features_vec")
+scaler = StandardScaler(inputCol="features_vec", outputCol="scaled_features")
+lr = LogisticRegression(featuresCol="scaled_features", labelCol="label")
+
+# Create pipeline
+pipeline = Pipeline(stages=[assembler, scaler, lr])
+
+# Fit pipeline
+model = pipeline.fit(training_data)
+```
+
+## Performance Tips
+
+1. **Use appropriate data formats** (Parquet for ML data)
+2. **Cache training data** for repeated access
+3. **Use vectorized operations** with VectorAssembler
+4. **Tune hyperparameters** systematically
+5. **Use cross validation** for robust evaluation
+6. **Monitor training progress** with MLflow
+7. **Consider distributed training** for large datasets

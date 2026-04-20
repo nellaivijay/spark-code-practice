@@ -1,0 +1,108 @@
+# Lab 5 - Spark Streaming
+
+```mermaid
+graph LR
+    subgraph "Streaming Source"
+        A[Kafka] --> D[Structured Streaming]
+        B[Files] --> D
+        C[Socket] --> D
+    end
+    
+    subgraph "Stream Processing"
+        D --> E[DataFrame]
+        E --> F[Transformations]
+        F --> G[Window Operations]
+        G --> H[Watermarking]
+        H --> I[State Management]
+    end
+    
+    subgraph "Output Sink"
+        I --> J[Console]
+        I --> K[Memory]
+        I --> L[File]
+        I --> M[Database]
+    end
+    
+    subgraph "Output Modes"
+        N[Append Mode]
+        O[Complete Mode]
+        P[Update Mode]
+    end
+    
+    J --> N
+    K --> O
+    L --> N
+    M --> P
+    
+    style D fill:#e1f5ff
+    style I fill:#ffe1e1
+    style N fill:#e1ffe1
+```
+
+## Streaming Architecture
+
+### Sources
+- **Kafka**: Distributed messaging system
+- **Files**: Monitoring directory for new files
+- **Socket**: Network socket for testing
+- **Rate**: Synthetic data source for testing
+
+### Processing
+- **DataFrame**: Structured streaming uses DataFrame API
+- **Transformations**: Lazy operations on streaming data
+- **Window Operations**: Tumbling, sliding, session windows
+- **Watermarking**: Handle late data
+- **State Management**: Maintain state for aggregations
+
+### Output Modes
+- **Append**: Only new rows (default)
+- **Complete**: All rows (stateful operations)
+- **Update**: Changed rows only
+
+### Sinks
+- **Console**: For debugging
+- **Memory**: For testing and queries
+- **File**: Persistent storage
+- **Database**: External databases
+- **Kafka**: Write back to Kafka
+
+## Window Operations
+
+### Tumbling Window
+```python
+window(col("timestamp"), "5 minutes")
+```
+Non-overlapping, fixed-size windows
+
+### Sliding Window
+```python
+window(col("timestamp"), "5 minutes", "1 minute")
+```
+Overlapping windows with slide interval
+
+### Session Window
+```python
+session_window(col("timestamp"), "5 minutes")
+```
+Dynamic windows based on activity gaps
+
+## Watermarking
+
+### Purpose
+- Handle late data
+- Control state size
+- Define when to drop old data
+
+### Configuration
+```python
+.withWatermark("timestamp", "10 minutes")
+```
+
+## Performance Tips
+
+1. **Use appropriate trigger intervals** (processing time vs once)
+2. **Configure watermark** to handle late data
+3. **Monitor streaming query** using Spark UI
+4. **Use checkpointing** for fault tolerance
+5. **Optimize state size** with appropriate watermark
+6. **Consider micro-batch vs continuous** processing
