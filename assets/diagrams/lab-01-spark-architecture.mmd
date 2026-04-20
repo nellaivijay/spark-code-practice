@@ -1,0 +1,60 @@
+# Lab 1 - Spark Architecture
+
+```mermaid
+graph TB
+    subgraph "Spark Application"
+        A[Driver Program] --> B[SparkSession]
+        B --> C[SparkContext]
+        C --> D[Cluster Manager]
+        
+        D --> E[Worker Node 1]
+        D --> F[Worker Node 2]
+        D --> G[Worker Node N]
+        
+        E --> H[Executor 1]
+        E --> I[Executor 2]
+        F --> J[Executor 3]
+        F --> K[Executor 4]
+        G --> L[Executor N]
+        
+        H --> M[Task]
+        I --> N[Task]
+        J --> O[Task]
+        K --> P[Task]
+        L --> Q[Task]
+        
+        M --> R[Partition 1]
+        N --> S[Partition 2]
+        O --> T[Partition 3]
+        P --> U[Partition 4]
+        Q --> V[Partition N]
+    end
+    
+    style A fill:#e1f5ff
+    style D fill:#ffe1e1
+    style M fill:#e1ffe1
+    style N fill:#e1ffe1
+    style O fill:#e1ffe1
+```
+
+## Components
+
+### Driver Program
+- Runs the main() function
+- Creates SparkSession
+- Coordinates executors
+
+### Cluster Manager
+- Allocates resources
+- Manages worker nodes
+- Supports Standalone, YARN, Kubernetes
+
+### Executor
+- Runs tasks on worker nodes
+- Stores data in memory/disk
+- Reports metrics to driver
+
+### Task
+- Unit of work on a partition
+- One task per partition per stage
+- Executed by executor threads

@@ -1,0 +1,92 @@
+# Lab 3 - Advanced DataFrame Operations
+
+```mermaid
+graph TB
+    subgraph "Join Operations"
+        A[DataFrame A] --> D[Join]
+        B[DataFrame B] --> D
+        
+        D --> E[Inner Join]
+        D --> F[Left Join]
+        D --> G[Right Join]
+        D --> H[Outer Join]
+        D --> I[Left Semi Join]
+        D --> J[Left Anti Join]
+    end
+    
+    subgraph "Window Functions"
+        K[DataFrame] --> L[Window Spec]
+        L --> M[Partition By]
+        L --> N[Order By]
+        L --> O[Window Frame]
+        
+        M --> P[Row Number]
+        N --> Q[Rank]
+        O --> R[Dense Rank]
+        M --> S[Lag/Lead]
+        N --> T[Aggregate Functions]
+    end
+    
+    subgraph "Complex Types"
+        U[DataFrame] --> V[Array Type]
+        U --> W[Map Type]
+        U --> X[Struct Type]
+        
+        V --> Y[explode, array_contains]
+        W --> Z[map_keys, map_values]
+        X --> AA[col.*, struct]
+    end
+    
+    subgraph "UDFs"
+        AB[Python Function] --> AC[UDF Registration]
+        AC --> AD[pandas_udf]
+        AC --> AE[udf]
+        
+        AD --> AF[Vectorized UDF]
+        AE --> AG[Row-by-Row UDF]
+    end
+    
+    style D fill:#e1f5ff
+    style L fill:#ffe1e1
+    style U fill:#fff9c4
+    style AC fill:#e1ffe1
+```
+
+## Join Types
+
+| Join Type | Description | Use Case |
+|-----------|-------------|----------|
+| Inner | Matching rows only | Intersection |
+| Left | All left rows + matching right | Primary table preservation |
+| Right | All right rows + matching left | Secondary table preservation |
+| Outer | All rows from both | Full outer join |
+| Left Semi | Left rows with match in right | Existence check |
+| Left Anti | Left rows without match in right | Exclusion check |
+
+## Window Functions
+
+### Ranking Functions
+- **row_number()**: Unique sequential numbers
+- **rank()**: Rank with gaps for ties
+- **dense_rank()**: Rank without gaps
+
+### Analytic Functions
+- **lag()**: Previous row value
+- **lead()**: Next row value
+- **aggregate**: sum, avg, count over windows
+
+## Complex Types
+
+### Array Operations
+- **explode()**: Flatten arrays to rows
+- **array_contains()**: Check array membership
+- **collect_list()**: Aggregate to array
+
+### Map Operations
+- **map_keys()**: Extract map keys
+- **map_values()**: Extract map values
+- **map_from_arrays()**: Create maps
+
+### Struct Operations
+- **col.***: Access struct fields
+- **struct()**: Create structs from columns

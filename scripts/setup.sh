@@ -23,6 +23,10 @@ fi
 echo "📁 Creating directories..."
 mkdir -p data logs checkpoint notebooks solutions config/hive
 
+# Setup sample data
+echo "📊 Setting up sample data..."
+python3 scripts/setup-data.py
+
 # Copy environment example if .env doesn't exist
 if [ ! -f .env ]; then
     echo "📝 Creating .env file from .env.example..."

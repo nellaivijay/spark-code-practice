@@ -1,0 +1,56 @@
+# Spark Code Practice - Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Learning Environment"
+        A[Jupyter Notebook] --> B[PySpark API]
+        A --> C[Spark SQL]
+        
+        B --> D[Spark Core]
+        C --> D
+        
+        D --> E[Spark MLlib]
+        D --> F[Spark Streaming]
+        D --> G[Spark SQL Engine]
+        
+        E --> H[Machine Learning]
+        F --> I[Real-time Processing]
+        G --> J[Batch Processing]
+        
+        D --> K[Storage Layer]
+        K --> L[MinIO S3]
+        K --> M[Local File System]
+        
+        D --> N[Cluster Manager]
+        N --> O[Standalone]
+        N --> P[Docker Compose]
+        N --> Q[Kubernetes]
+    end
+    
+    style A fill:#e1f5ff
+    style D fill:#ffe1e1
+    style K fill:#e1ffe1
+    style N fill:#fff5e1
+```
+
+## Components
+
+### User Interface
+- **Jupyter Notebook**: Interactive learning environment
+- **PySpark API**: Python interface to Spark
+- **Spark SQL**: SQL interface for structured queries
+
+### Spark Core
+- **Spark Core**: Distributed processing engine
+- **Spark MLlib**: Machine learning library
+- **Spark Streaming**: Real-time data processing
+- **Spark SQL Engine**: SQL optimization and execution
+
+### Storage Layer
+- **MinIO S3**: S3-compatible object storage
+- **Local File System**: Local development storage
+
+### Cluster Management
+- **Standalone**: Simple cluster manager
+- **Docker Compose**: Container orchestration
+- **Kubernetes**: Production-grade orchestration

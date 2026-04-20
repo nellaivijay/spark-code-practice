@@ -1,0 +1,67 @@
+# Lab 2 - Data Loading & Transformation
+
+```mermaid
+graph LR
+    subgraph "Data Sources"
+        A[CSV Files] --> D[Spark Reader]
+        B[JSON Files] --> D
+        C[Parquet Files] --> D
+        E[Database] --> D
+    end
+    
+    D --> F[DataFrame]
+    
+    F --> G[Transformations]
+    
+    G --> H[Filter]
+    G --> I[Select]
+    G --> J[WithColumn]
+    G --> K[GroupBy]
+    
+    H --> L[Actions]
+    I --> L
+    J --> L
+    K --> L
+    
+    L --> M[Show/Collect]
+    L --> N[Write]
+    L --> O[Count]
+    
+    N --> P[Output Formats]
+    
+    P --> Q[Parquet]
+    P --> R[CSV]
+    P --> S[JSON]
+    P --> T[Database]
+    
+    style D fill:#e1f5ff
+    style F fill:#ffe1e1
+    style G fill:#fff9c4
+    style L fill:#e1ffe1
+```
+
+## Data Flow
+
+### Reading Data
+- **CSV**: Structured text format with headers
+- **JSON**: Semi-structured nested data
+- **Parquet**: Columnar storage format (optimized)
+- **Database**: JDBC connections to SQL databases
+
+### Transformations (Lazy)
+- **Filter**: Row-level filtering
+- **Select**: Column selection and renaming
+- **WithColumn**: Add/modify columns
+- **GroupBy**: Aggregation operations
+
+### Actions (Eager)
+- **Show**: Display data
+- **Collect**: Retrieve data to driver
+- **Count**: Count rows
+- **Write**: Persist data
+
+### Writing Data
+- **Parquet**: Best for Spark workloads
+- **CSV**: Human-readable format
+- **JSON**: Semi-structured output
+- **Database**: JDBC write operations
